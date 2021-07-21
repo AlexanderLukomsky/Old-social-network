@@ -1,0 +1,27 @@
+.posts {
+  padding: 20px;
+
+  &__input_message {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    max-width: 700px;
+    width: 100%;
+    resize: none;
+    padding: 10px;
+    min-height: 70px;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  &__button {
+    min-width: 120px;
+    min-height: 30px;
+    max-height: 30px;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 20px;
+    align-self: flex-end;
+  }
+  &__input_wrapper {
+    padding: 10px;
+    display: flex;
+  }
+}

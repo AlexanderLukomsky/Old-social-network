@@ -1,0 +1,12 @@
+.profile {
+  grid-area: cont;
+
+  background-color: grey;
+  &__top {
+    img {
+      max-width: 100%;
+      width: 100%;
+      max-height: 200px;
+    }
+  }
+}

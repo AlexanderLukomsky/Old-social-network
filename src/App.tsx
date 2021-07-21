@@ -2,7 +2,7 @@ import './style/App.scss';
 import { Header } from './Components/Header/Header';
 import { Footer } from './Components/Footer/Footer';
 import { Navbar } from './Components/Navbar/Navbar';
-import { Content } from './Components/Content/Content';
+import { Content } from './Components/Profile/Profile';
 
 const App = () => {
   return (
