@@ -1,6 +1,6 @@
 import s from './Profile.module.scss'
 import { UserPost } from './UserPosts/UserPosts'
-export const Content = () => {
+export const Profile = () => {
   return (
     <div className={s.profile}>
       <div className={s.profile__top}>

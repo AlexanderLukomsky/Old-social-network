@@ -1,0 +1,11 @@
+.dialogs_page {
+  font-size: 30px;
+  padding: 15px;
+  height: 100%;
+  &__column {
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    grid-column-gap: 10px;
+    height: 100%;
+  }
+}
