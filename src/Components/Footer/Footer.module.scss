@@ -1,18 +1,8 @@
 .footer {
   grid-area: footer;
-
-  background-color: grey;
+  background-color: #f3f3f3;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
   position: relative;
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 0;
-    height: 0;
-    border-top: 50px solid #fff;
-    border-right: 40px solid transparent;
-  }
 
   &__list {
     padding: 0 20px;
@@ -23,26 +13,16 @@
     position: relative;
     z-index: 10;
   }
-  &__item {
-  }
   &__link {
+    display: inline-block;
     font-size: 20px;
     font-weight: 500;
-    color: white;
+    color: #888;
     &:hover {
       color: gold;
     }
   }
 }
-.first {
-  &::first-letter {
-    color: black;
-    font-size: 22px;
-    font-weight: 600;
-  }
-  &:hover {
-    &::first-letter {
-      color: gold;
-    }
-  }
+.active {
+  color: goldenrod;
 }

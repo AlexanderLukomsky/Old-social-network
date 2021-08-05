@@ -1,6 +1,13 @@
 import s from './Profile.module.scss'
 import { UserPost } from './UserPosts/UserPosts'
-export const Profile = () => {
+type ProfilePageState = {
+  post: string
+  likeCounter: number
+}
+type PropsType = {
+  profilePageState: Array<ProfilePageState>
+}
+export const Profile = (props: PropsType) => {
   return (
     <div className={s.profile}>
       <div className={s.profile__top}>
@@ -9,7 +16,7 @@ export const Profile = () => {
       </div>
       <div>Ava disc</div>
       <div>input</div>
-      <UserPost />
+      <UserPost profilePageState={props.profilePageState} />
     </div>
   )
 }

@@ -1,8 +1,9 @@
 import s from "./Message.module.scss"
-export const Message = () => {
+type PropsType = {
+  messages: string
+}
+export const Message = ({ messages }: PropsType) => {
   return (
-    <div>
-      <div className={s.message}>message</div>
-    </div>
+    <li className={s.message}>{messages}</li>
   )
 }

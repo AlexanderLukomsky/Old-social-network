@@ -1,11 +1,21 @@
-.dialogs_page {
-  font-size: 30px;
+.dialogs {
+  font-size: 18px;
   padding: 15px;
   height: 100%;
-  &__column {
+  &__columns {
     display: grid;
     grid-template-columns: 2fr 5fr;
     grid-column-gap: 10px;
     height: 100%;
+  }
+  &__dialog_list {
+    padding: 0px 10px;
+    border-right: 1px solid #009;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__messages_list {
+    padding: 0px 10px;
   }
 }

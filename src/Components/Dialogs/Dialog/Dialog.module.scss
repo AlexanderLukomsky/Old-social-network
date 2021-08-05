@@ -1,0 +1,11 @@
+.dialog {
+  margin-bottom: 10px;
+  &__link {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: black;
+    &:hover {
+      background-color: aqua;
+    }
+  }
+}

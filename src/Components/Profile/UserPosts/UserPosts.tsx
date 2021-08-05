@@ -1,6 +1,13 @@
 import { Post } from './Post/Post'
 import s from './UserPosts.module.scss'
-export const UserPost = () => {
+type ProfilePageState = {
+  post: string
+  likeCounter: number
+}
+type PropsType = {
+  profilePageState: Array<ProfilePageState>
+}
+export const UserPost = ({ profilePageState }: PropsType) => {
   return (
     <div className={s.posts}>
       <div className={s.posts__input_wrapper}>
@@ -8,8 +15,7 @@ export const UserPost = () => {
         <button type='submit' className={s.posts__button}>BTN</button>
       </div>
       <ul className={s.posts__list}>
-        <Post message='post 1-1-1' />
-        <Post message='post 2-2-2-2' />
+        {profilePageState.map(p => <Post message={p.post} likeCounter={p.likeCounter} />)}
       </ul>
     </div>
   )

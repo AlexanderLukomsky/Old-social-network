@@ -1,22 +1,23 @@
+import { NavLink } from 'react-router-dom'
 import s from './Footer.module.scss'
 export const Footer = () => {
   return (
     <footer className={s.footer}>
       <ul className={s.footer__list}>
-        <li className={`${s.footer__link} ${s.first}`}>
-          <a href="/profile" className={s.footer__link}>Profile</a>
+        <li className={s.footer__link}>
+          <NavLink to="/profile" className={s.footer__link} activeClassName={s.active}>Profile</NavLink>
         </li>
         <li className={s.footer__item}>
-          <a href="/messages" className={`${s.footer__link} ${s.active}`}>Messages</a>
+          <NavLink to="/messages" className={s.footer__link} activeClassName={s.active}>Messages</NavLink>
         </li>
         <li className={s.footer__item}>
-          <a href="/news" className={s.footer__link}>News</a>
+          <NavLink to="/news" className={s.footer__link} activeClassName={s.active}>News</NavLink>
         </li>
         <li className={s.footer__item}>
-          <a href="/music" className={s.footer__link}>Music</a>
+          <NavLink to="/music" className={s.footer__link} activeClassName={s.active}>Music</NavLink>
         </li>
         <li className={s.footer__item}>
-          <a href="/settings" className={s.footer__link}>Settings</a>
+          <NavLink to="/settings" className={s.footer__link} activeClassName={s.active}>Settings</NavLink>
         </li>
       </ul>
     </footer >
