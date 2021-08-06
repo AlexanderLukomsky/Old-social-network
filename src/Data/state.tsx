@@ -1,6 +1,9 @@
+import { v1 } from "uuid"
+
 type ProfilePageDataType = {
   post: string
   likeCounter: number
+  id: string
 }
 type DialogsPageDataType = {
   dialogsData: Array<DialogsDataType>
@@ -8,29 +11,83 @@ type DialogsPageDataType = {
 }
 type DialogsDataType = {
   name: string
-  id: number
+  id: string
 }
 type MessagesDataType = {
   messages: string
-  id: number
+  id: string
 }
 export type StateType = {
   profilePageData: Array<ProfilePageDataType>
   dialogsPageData: DialogsPageDataType
 }
 export const state: StateType = {
-  profilePageData: [{ post: 'firs', likeCounter: 1 }, { post: 'second', likeCounter: 1 }, { post: 'third', likeCounter: 1 }],
+  profilePageData: [
+    { post: 'firs', likeCounter: 1, id: v1() },
+    { post: 'second', likeCounter: 1, id: v1() },
+    { post: 'third', likeCounter: 1, id: v1() }],
   dialogsPageData: {
     dialogsData: [
-      { name: 'Dima', id: 1 },
-      { name: 'Igor', id: 2 },
-      { name: 'Alex', id: 3 },
-      { name: 'Oleg', id: 4 }
+      { name: 'Dima', id: v1() },
+      { name: 'Igor', id: v1() },
+      { name: 'Alex', id: v1() },
+      { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Dima', id: v1() },
+      // { name: 'Igor', id: v1() },
+      // { name: 'Alex', id: v1() },
+      // { name: 'Oleg', id: v1() }
     ],
     messagesData: [
-      { messages: 'Hi', id: 1 },
-      { messages: 'Hello', id: 2 },
-      { messages: 'Wat\'s Up', id: 3 }
+      { messages: 'Hi', id: v1() },
+      { messages: 'Hello', id: v1() },
+      { messages: 'Wat\'s Up', id: v1() }
     ]
   }
 }

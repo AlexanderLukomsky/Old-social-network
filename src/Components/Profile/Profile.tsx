@@ -3,6 +3,7 @@ import { UserPost } from './UserPosts/UserPosts'
 type ProfilePageState = {
   post: string
   likeCounter: number
+  id: string
 }
 type PropsType = {
   profilePageState: Array<ProfilePageState>
@@ -15,7 +16,6 @@ export const Profile = (props: PropsType) => {
           src="https://www.imgacademy.com/themes/custom/imgacademy/images/helpbox-contact.jpg" alt="" />
       </div>
       <div>Ava disc</div>
-      <div>input</div>
       <UserPost profilePageState={props.profilePageState} />
     </div>
   )
