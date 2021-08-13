@@ -6,7 +6,10 @@ type ProfilePageState = {
   id: string
 }
 type PropsType = {
-  profilePageState: Array<ProfilePageState>
+  profilePagePosts: Array<ProfilePageState>
+  addPost: (message: string) => void
+  postText: string
+  changePostText: (text: string) => void
 }
 export const Profile = (props: PropsType) => {
   return (
@@ -16,7 +19,7 @@ export const Profile = (props: PropsType) => {
           src="https://www.imgacademy.com/themes/custom/imgacademy/images/helpbox-contact.jpg" alt="" />
       </div>
       <div>Ava disc</div>
-      <UserPost profilePageState={props.profilePageState} />
+      <UserPost postText={props.postText} profilePageState={props.profilePagePosts} addPost={props.addPost} changePostText={props.changePostText} />
     </div>
   )
 }

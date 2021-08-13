@@ -11,16 +11,24 @@ import { Music } from './Components/Music/Music';
 import { StateType } from './Data/state';
 type PropsType = {
   state: StateType
+  addPost: (message: string) => void
+  changePostText: (text: string) => void
 }
-const App = (props: PropsType) => {
+const App = ({ state, ...props }: PropsType) => {
   return (
     <div className='App'>
       <div className="container">
         <Header />
-        <Navbar />
+        <Navbar dialogsData={state.dialogsPageData.dialogsData} />
         <div className='App__content'>
-          <Route path='/profile' render={() => <Profile profilePageState={props.state.profilePageData} />} />
-          <Route path='/messages' render={() => <Dialogs dialogsPageData={props.state.dialogsPageData} />} />  {/*exact - точь в точь*/}
+          <Route path='/profile' render={
+            () => <Profile
+              postText={state.profilePageData.postText}
+              profilePagePosts={state.profilePageData.posts}
+              addPost={props.addPost}
+              changePostText={props.changePostText}
+            />} />
+          <Route path='/messages' render={() => <Dialogs dialogsPageData={state.dialogsPageData} />} />  {/*exact - точь в точь*/}
           <Route path='/news' component={News} />
           <Route path='/music' component={Music} />
           <Route path='/settings' component={Settins} />
