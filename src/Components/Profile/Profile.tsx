@@ -1,3 +1,4 @@
+import { ActionType } from '../../Data/state'
 import s from './Profile.module.scss'
 import { UserPost } from './UserPosts/UserPosts'
 type ProfilePageState = {
@@ -7,11 +8,10 @@ type ProfilePageState = {
 }
 type PropsType = {
   profilePagePosts: Array<ProfilePageState>
-  addPost: (message: string) => void
   postText: string
-  changePostText: (text: string) => void
+  dispatch: (action: ActionType) => void
 }
-export const Profile = (props: PropsType) => {
+export const Profile = ({ dispatch, ...props }: PropsType) => {
   return (
     <div className={s.profile}>
       <div className={s.profile__top}>
@@ -19,7 +19,7 @@ export const Profile = (props: PropsType) => {
           src="https://www.imgacademy.com/themes/custom/imgacademy/images/helpbox-contact.jpg" alt="" />
       </div>
       <div>Ava disc</div>
-      <UserPost postText={props.postText} profilePageState={props.profilePagePosts} addPost={props.addPost} changePostText={props.changePostText} />
+      <UserPost postText={props.postText} profilePageState={props.profilePagePosts} dispatch={dispatch} />
     </div>
   )
 }

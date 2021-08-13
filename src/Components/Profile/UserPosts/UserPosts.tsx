@@ -1,4 +1,5 @@
 import React, { ChangeEvent, RefObject } from 'react'
+import { ActionType, addPostActionCreator, changePostActionCreator } from '../../../Data/state'
 import { Post } from './Post/Post'
 import s from './UserPosts.module.scss'
 type ProfilePageState = {
@@ -8,17 +9,17 @@ type ProfilePageState = {
 }
 type PropsType = {
   profilePageState: Array<ProfilePageState>
-  addPost: (message: string) => void
   postText: string
-  changePostText: (text: string) => void
+  dispatch: (action: ActionType) => void
 }
-export const UserPost = ({ profilePageState, postText, ...props }: PropsType) => {
+
+export const UserPost = ({ profilePageState, postText, dispatch, ...props }: PropsType) => {
   const postRef: RefObject<HTMLTextAreaElement> = React.createRef()
   const addPost = () => {
-    props.addPost(postText)
+    dispatch(addPostActionCreator(postText))
   }
   const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    props.changePostText(e.currentTarget.value)
+    dispatch(changePostActionCreator(e.currentTarget.value))
   }
   return (
     <div className={s.posts}>

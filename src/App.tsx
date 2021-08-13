@@ -8,13 +8,12 @@ import { Route } from 'react-router-dom';
 import { News } from './Components/News/News';
 import { Settins } from './Components/Settings/Settings';
 import { Music } from './Components/Music/Music';
-import { StateType } from './Data/state';
+import { ActionType, StateType } from './Data/state';
 type PropsType = {
   state: StateType
-  addPost: (message: string) => void
-  changePostText: (text: string) => void
+  dispatch: (action: ActionType) => void
 }
-const App = ({ state, ...props }: PropsType) => {
+const App = ({ state, dispatch, ...props }: PropsType) => {
   return (
     <div className='App'>
       <div className="container">
@@ -25,8 +24,7 @@ const App = ({ state, ...props }: PropsType) => {
             () => <Profile
               postText={state.profilePageData.postText}
               profilePagePosts={state.profilePageData.posts}
-              addPost={props.addPost}
-              changePostText={props.changePostText}
+              dispatch={dispatch}
             />} />
           <Route path='/messages' render={() => <Dialogs dialogsPageData={state.dialogsPageData} />} />  {/*exact - точь в точь*/}
           <Route path='/news' component={News} />

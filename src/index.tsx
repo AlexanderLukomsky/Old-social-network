@@ -10,7 +10,7 @@ export const renderTree = (state: StateType) => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App changePostText={store.changePostText.bind(store)} state={store.getState()} addPost={store.addPost.bind(store)} />
+        <App dispatch={store.dispatch.bind(store)} state={store.getState()} />
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
