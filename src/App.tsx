@@ -26,7 +26,7 @@ const App = ({ state, dispatch, ...props }: PropsType) => {
               profilePagePosts={state.profilePageData.posts}
               dispatch={dispatch}
             />} />
-          <Route path='/messages' render={() => <Dialogs dialogsPageData={state.dialogsPageData} />} />  {/*exact - точь в точь*/}
+          <Route path='/messages' render={() => <Dialogs dialogsPageData={state.dialogsPageData} dispatch={dispatch} />} />  {/*exact - точь в точь*/}
           <Route path='/news' component={News} />
           <Route path='/music' component={Music} />
           <Route path='/settings' component={Settins} />

@@ -2,12 +2,15 @@ import s from './Dialogs.module.scss'
 import { Message } from './Message/Message'
 import { Dialog } from './Dialog/Dialog'
 import React, { LegacyRef } from 'react'
+import { ActionType, addMessageActionCreator, changeMessageActionCreator } from '../../Data/state'
 type PropsType = {
   dialogsPageData: DialogsPageDataType
+  dispatch: (action: ActionType) => void
 }
 type DialogsPageDataType = {
   dialogsData: Array<DialogsDataType>
   messagesData: Array<MessagesDataType>
+  newMessage: string
 }
 type DialogsDataType = {
   name: string
@@ -17,11 +20,12 @@ type MessagesDataType = {
   messages: string
   id: string
 }
-export const Dialogs = ({ dialogsPageData }: PropsType) => {
-  const messageRef: LegacyRef<HTMLTextAreaElement> = React.createRef()
+
+export const Dialogs = ({ dialogsPageData, ...props }: PropsType) => {
   const addMessage = () => {
-    console.log(messageRef.current?.value);
+    props.dispatch(addMessageActionCreator(''))
   }
+  console.log(dialogsPageData.newMessage);
   return (
     <div className={s.dialogs}>
       <div className={s.dialogs__columns}>
@@ -33,7 +37,7 @@ export const Dialogs = ({ dialogsPageData }: PropsType) => {
         </ul>
       </div>
       <div>
-        <textarea ref={messageRef}></textarea>
+        <textarea value={dialogsPageData.newMessage} onChange={(e) => props.dispatch(changeMessageActionCreator(e.currentTarget.value))}></textarea>
         <div>
           <button onClick={addMessage}>add</button>
         </div>
