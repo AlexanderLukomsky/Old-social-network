@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { StateType, store } from "./Data/state";
+import { StateType } from "./Data/store";
+import { store } from "./Data/redux-store";
 import './index.css';
-
 
 export const renderTree = (state: StateType) => {
   ReactDOM.render(
@@ -17,4 +17,9 @@ export const renderTree = (state: StateType) => {
   );
 }
 renderTree(store.getState())
-store.renderTreeSubscriber(renderTree)
+
+store.subscribe(() => {
+  const state = store.getState()
+  renderTree(state)
+}
+)

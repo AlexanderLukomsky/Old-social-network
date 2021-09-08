@@ -1,5 +1,5 @@
-import React, { ChangeEvent, RefObject } from 'react'
-import { ActionType, addPostActionCreator, changePostActionCreator } from '../../../Data/state'
+import { ChangeEvent } from 'react'
+import { ActionType } from '../../../Data/profilePage-reducer'
 import { Post } from './Post/Post'
 import s from './UserPosts.module.scss'
 type ProfilePageState = {
@@ -8,27 +8,35 @@ type ProfilePageState = {
   id: string
 }
 type PropsType = {
-  profilePageState: Array<ProfilePageState>
+  posts: ProfilePageState[]
   postText: string
-  dispatch: (action: ActionType) => void
+  addPost: (post: string) => void
+  changePostText: (text: string) => void
 }
 
-export const UserPost = ({ profilePageState, postText, dispatch, ...props }: PropsType) => {
-  const postRef: RefObject<HTMLTextAreaElement> = React.createRef()
-  const addPost = () => {
-    dispatch(addPostActionCreator(postText))
+export const UserPost = (
+  {
+    posts,
+    postText,
+    addPost,
+    changePostText,
+    ...props
+  }: PropsType
+) => {
+  const onClickHandler = () => {
+    addPost(postText)
   }
   const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(changePostActionCreator(e.currentTarget.value))
+    changePostText(e.currentTarget.value)
   }
   return (
     <div className={s.posts}>
       <div className={s.posts__input_wrapper}>
-        <textarea ref={postRef} value={postText} className={s.posts__input_message} onChange={onChangePostHandler}></textarea>
-        <button onClick={addPost} className={s.posts__button}>BTN</button>
+        <textarea value={postText} className={s.posts__input_message} onChange={onChangePostHandler}></textarea>
+        <button onClick={onClickHandler} className={s.posts__button}>BTN</button>
       </div>
       <ul className={s.posts__list}>
-        {profilePageState.map(p => <Post message={p.post} likeCounter={p.likeCounter} key={p.id} />)}
+        {posts.map(p => <Post message={p.post} likeCounter={p.likeCounter} key={p.id} />)}
       </ul>
     </div>
   )

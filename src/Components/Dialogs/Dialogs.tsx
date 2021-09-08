@@ -1,16 +1,14 @@
 import s from './Dialogs.module.scss'
 import { Message } from './Message/Message'
 import { Dialog } from './Dialog/Dialog'
-import React, { LegacyRef } from 'react'
-import { ActionType, addMessageActionCreator, changeMessageActionCreator } from '../../Data/state'
+import { ChangeEvent, RefObject } from 'react'
+import React from 'react'
 type PropsType = {
-  dialogsPageData: DialogsPageDataType
-  dispatch: (action: ActionType) => void
-}
-type DialogsPageDataType = {
-  dialogsData: Array<DialogsDataType>
-  messagesData: Array<MessagesDataType>
-  newMessage: string
+  messages: MessagesDataType[]
+  dialogs: DialogsDataType[]
+  messageText: string
+  addMessage: (message: string) => void
+  changeMessageText: (messageText: string) => void
 }
 type DialogsDataType = {
   name: string
@@ -21,25 +19,38 @@ type MessagesDataType = {
   id: string
 }
 
-export const Dialogs = ({ dialogsPageData, ...props }: PropsType) => {
-  const addMessage = () => {
-    props.dispatch(addMessageActionCreator(''))
+export const Dialogs = (
+  {
+    messages,
+    dialogs,
+    messageText,
+    changeMessageText,
+    addMessage,
+    ...props
+  }: PropsType) => {
+  const onClickHandler = () => {
+    addMessage(messageText)
   }
-  console.log(dialogsPageData.newMessage);
+  const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    changeMessageText(e.currentTarget.value)
+  }
   return (
     <div className={s.dialogs}>
       <div className={s.dialogs__columns}>
         <ul className={s.dialogs__dialog_list}>
-          {dialogsPageData.dialogsData.map(d => <Dialog name={d.name} key={d.id} transitionTo={`/messages/${d.id}`} />)}
+          {dialogs.map(d => <Dialog name={d.name} key={d.id} transitionTo={`/messages/${d.id}`} />)}
         </ul>
         <ul className={s.dialogs__messages_list}>
-          {dialogsPageData.messagesData.map(m => <Message key={m.id} messages={m.messages} />)}
+          {messages.map(m => <Message key={m.id} messageText={m.messages} />)}
         </ul>
       </div>
       <div>
-        <textarea value={dialogsPageData.newMessage} onChange={(e) => props.dispatch(changeMessageActionCreator(e.currentTarget.value))}></textarea>
+        <textarea
+          value={messageText}
+          onChange={onChangeHandler}
+        />
         <div>
-          <button onClick={addMessage}>add</button>
+          <button onClick={onClickHandler}>add</button>
         </div>
       </div>
     </div>

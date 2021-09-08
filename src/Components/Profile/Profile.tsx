@@ -1,14 +1,17 @@
-import { ActionType } from '../../Data/state'
+import { ActionType } from '../../Data/store'
 import s from './Profile.module.scss'
-import { UserPost } from './UserPosts/UserPosts'
-type ProfilePageState = {
+import { UserPostContainer } from './UserPosts/UserPostsContainer'
+type ProfilePageType = {
+  posts: Array<ProfilePageDataType>
+  postText: string
+}
+type ProfilePageDataType = {
   post: string
   likeCounter: number
   id: string
 }
 type PropsType = {
-  profilePagePosts: Array<ProfilePageState>
-  postText: string
+  state: ProfilePageType
   dispatch: (action: ActionType) => void
 }
 export const Profile = ({ dispatch, ...props }: PropsType) => {
@@ -19,7 +22,10 @@ export const Profile = ({ dispatch, ...props }: PropsType) => {
           src="https://www.imgacademy.com/themes/custom/imgacademy/images/helpbox-contact.jpg" alt="" />
       </div>
       <div>Ava disc</div>
-      <UserPost postText={props.postText} profilePageState={props.profilePagePosts} dispatch={dispatch} />
+      <UserPostContainer
+        state={props.state}
+        dispatch={dispatch}
+      />
     </div>
   )
 }
