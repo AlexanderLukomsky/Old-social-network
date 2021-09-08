@@ -1,5 +1,4 @@
 import { ChangeEvent } from 'react'
-import { ActionType } from '../../../Data/profilePage-reducer'
 import { Post } from './Post/Post'
 import s from './UserPosts.module.scss'
 type ProfilePageState = {

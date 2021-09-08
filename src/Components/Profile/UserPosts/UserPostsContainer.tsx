@@ -1,5 +1,5 @@
 import { addPostActionCreator, changePostActionCreator } from '../../../Data/profilePage-reducer'
-import { ActionType, StateType } from '../../../Data/store'
+import { ActionType } from '../../../Data/store'
 import { UserPost } from './UserPosts'
 type ProfilePageType = {
   posts: Array<ProfilePageDataType>

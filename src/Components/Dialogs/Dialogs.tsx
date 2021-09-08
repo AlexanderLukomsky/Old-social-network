@@ -1,8 +1,7 @@
 import s from './Dialogs.module.scss'
 import { Message } from './Message/Message'
 import { Dialog } from './Dialog/Dialog'
-import { ChangeEvent, RefObject } from 'react'
-import React from 'react'
+import { ChangeEvent } from 'react'
 type PropsType = {
   messages: MessagesDataType[]
   dialogs: DialogsDataType[]
