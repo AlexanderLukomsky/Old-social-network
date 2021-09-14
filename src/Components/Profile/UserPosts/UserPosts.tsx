@@ -1,13 +1,10 @@
 import { ChangeEvent } from 'react'
+import { ProfilePageType } from '../../../Data/oldStore/store'
 import { Post } from './Post/Post'
 import s from './UserPosts.module.scss'
-type ProfilePageState = {
-  post: string
-  likeCounter: number
-  id: string
-}
+
 type PropsType = {
-  posts: ProfilePageState[]
+  state: ProfilePageType
   postText: string
   addPost: (post: string) => void
   changePostText: (text: string) => void
@@ -15,7 +12,7 @@ type PropsType = {
 
 export const UserPost = (
   {
-    posts,
+    state,
     postText,
     addPost,
     changePostText,
@@ -35,7 +32,7 @@ export const UserPost = (
         <button onClick={onClickHandler} className={s.posts__button}>BTN</button>
       </div>
       <ul className={s.posts__list}>
-        {posts.map(p => <Post message={p.post} likeCounter={p.likeCounter} key={p.id} />)}
+        {state.posts.map(p => <Post message={p.post} likeCounter={p.likeCounter} key={p.id} />)}
       </ul>
     </div>
   )

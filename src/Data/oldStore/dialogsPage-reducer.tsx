@@ -1,24 +1,9 @@
 import { v1 } from "uuid"
+import { ActionType, DialogsPageType } from "./store"
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const CHANGE_MESSAGES_TEXT = 'CHANGE-MESSAGES-TEXT'
-type DialogsPageDataType = {
-  dialogsData: Array<DialogsDataType>
-  messagesData: MessagesDataType[]
-  newMessage: string
-}
-export type DialogsDataType = {
-  name: string
-  id: string
-}
-type MessagesDataType = {
-  messages: string
-  id: string
-}
-export type ActionType = {
-  type: 'ADD-POST' | 'CHANGE-POST-TEXT' | 'ADD-MESSAGE' | 'CHANGE-MESSAGES-TEXT'
-  message: string
-}
+
 const initialStateDialogsPage = {
   dialogsData: [
     { name: 'Dima', id: v1() },
@@ -33,7 +18,7 @@ const initialStateDialogsPage = {
   ],
   newMessage: ''
 }
-export const dialogsPageReducer = (state: DialogsPageDataType = initialStateDialogsPage, action: ActionType) => {
+export const dialogsPageReducer = (state: DialogsPageType = initialStateDialogsPage, action: ActionType) => {
   switch (action.type) {
     case ADD_MESSAGE:
       return { ...state, messagesData: [{ messages: action.message, id: v1() }, ...state.messagesData] }

@@ -1,48 +1,53 @@
 import { v1 } from "uuid"
 import { dialogsPageReducer } from "./dialogsPage-reducer"
 import { propfilePageReducer } from "./profilePage-reducer"
-export type ActionType = {
-  type: 'ADD-POST' | 'CHANGE-POST-TEXT' | 'ADD-MESSAGE' | 'CHANGE-MESSAGES-TEXT'
-  message: string
-}
-type ProfilePageType = {
-  posts: Array<ProfilePageDataType>
-  postText: string
-}
-type ProfilePageDataType = {
-  post: string
-  likeCounter: number
+//******* */
+type MessagesDataType = {
+  messages: string
   id: string
-}
-type DialogsPageDataType = {
-  dialogsData: Array<DialogsDataType>
-  messagesData: MessagesDataType[]
-  newMessage: string
 }
 export type DialogsDataType = {
   name: string
   id: string
 }
-type MessagesDataType = {
-  messages: string
+
+type PostsType = {
+  post: string
+  likeCounter: number
   id: string
 }
-export type StateType = {
-  profilePageData: ProfilePageType
-  dialogsPageData: DialogsPageDataType
+export type ProfilePageType = {
+  posts: PostsType[]
+  postText: string
+}
+export type DialogsPageType = {
+  dialogsData: DialogsDataType[]
+  messagesData: MessagesDataType[]
+  newMessage: string
+}
+export type RootStateType = {
+  profilePage: ProfilePageType
+  dialogsPage: DialogsPageType
+}
+//******* */
+
+
+export type ActionType = {
+  type: 'ADD-POST' | 'CHANGE-POST-TEXT' | 'ADD-MESSAGE' | 'CHANGE-MESSAGES-TEXT'
+  message: string
 }
 
 export type StoreType = {
-  _state: StateType
-  getState: () => StateType
-  _renderTree: (state: StateType) => void
-  subscribe: (observer: (state: StateType) => void) => void
+  _state: RootStateType
+  getState: () => RootStateType
+  _renderTree: (state: RootStateType) => void
+  subscribe: (observer: (state: RootStateType) => void) => void
   dispatch: (action: ActionType) => void
 }
 
 export const store: StoreType = {
   _state: {
-    profilePageData: {
+    profilePage: {
       posts: [
         { post: 'firs', likeCounter: 1, id: v1() },
         { post: 'second', likeCounter: 1, id: v1() },
@@ -50,7 +55,7 @@ export const store: StoreType = {
       ],
       postText: 'post text: '
     },
-    dialogsPageData: {
+    dialogsPage: {
       dialogsData: [
         { name: 'Dima', id: v1() },
         { name: 'Igor', id: v1() },
@@ -70,12 +75,14 @@ export const store: StoreType = {
   },
   dispatch(action) {
     console.log(action);
-    this._state.profilePageData = propfilePageReducer(this._state.profilePageData, action)
-    this._state.dialogsPageData = dialogsPageReducer(this._state.dialogsPageData, action)
+    this._state.profilePage = propfilePageReducer(this._state.profilePage, action)
+    this._state.dialogsPage = dialogsPageReducer(this._state.dialogsPage, action)
     this._renderTree(this._state)
 
 
   },
   _renderTree(state) { },
-  subscribe(observer: (state: StateType) => void) { this._renderTree = observer }
+  subscribe(observer: (state: RootStateType) => void) { this._renderTree = observer }
 }
+
+

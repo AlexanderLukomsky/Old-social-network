@@ -1,15 +1,10 @@
-import { ActionType } from '../../Data/store'
+
+
+import { ActionType, ProfilePageType } from '../../Data/oldStore/store'
 import s from './Profile.module.scss'
 import { UserPostContainer } from './UserPosts/UserPostsContainer'
-type ProfilePageType = {
-  posts: Array<ProfilePageDataType>
-  postText: string
-}
-type ProfilePageDataType = {
-  post: string
-  likeCounter: number
-  id: string
-}
+
+
 type PropsType = {
   state: ProfilePageType
   dispatch: (action: ActionType) => void

@@ -7,11 +7,11 @@ import { Route } from 'react-router-dom';
 import { News } from './Components/News/News';
 import { Settins } from './Components/Settings/Settings';
 import { Music } from './Components/Music/Music';
-import { ActionType, StateType } from './Data/store';
+
 import { DialogsContainer } from './Components/Dialogs/DialogsContainer';
-import { StoreContext } from './storeContext/storeContext';
+import { ActionType, RootStateType } from './Data/oldStore/store';
 type PropsType = {
-  state: StateType
+  state: RootStateType
   dispatch: (action: ActionType) => void
 }
 const App = ({ state, dispatch, ...props }: PropsType) => {
@@ -19,14 +19,12 @@ const App = ({ state, dispatch, ...props }: PropsType) => {
     <div className='App'>
       <div className="container">
         <Header />
-        <StoreContext.Provider value={state}>
-          <Navbar />
-        </StoreContext.Provider>
+        <Navbar dialogsData={state.dialogsPage.dialogsData} />
         <div className='App__content'>
           <Route path='/profile'
             render={
               () => <Profile
-                state={state.profilePageData}
+                state={state.profilePage}
                 dispatch={dispatch}
               />
             }
@@ -34,7 +32,7 @@ const App = ({ state, dispatch, ...props }: PropsType) => {
           <Route path='/messages'
             render={
               () => <DialogsContainer
-                state={state.dialogsPageData}
+                state={state}
                 dispatch={dispatch}
               />
             } />  {/*exact - точь в точь*/}

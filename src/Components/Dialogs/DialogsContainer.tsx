@@ -1,22 +1,10 @@
+import { addMessageActionCreator, changeMessageActionCreator } from '../../Data/oldStore/dialogsPage-reducer'
 
-import { ActionType, addMessageActionCreator, changeMessageActionCreator } from '../../Data/dialogsPage-reducer'
+import { ActionType, RootStateType } from '../../Data/oldStore/store'
 import { Dialogs } from './Dialogs'
 type PropsType = {
-  state: DialogsPageDataType
+  state: RootStateType
   dispatch: (action: ActionType) => void
-}
-type DialogsPageDataType = {
-  dialogsData: Array<DialogsDataType>
-  messagesData: Array<MessagesDataType>
-  newMessage: string
-}
-type DialogsDataType = {
-  name: string
-  id: string
-}
-type MessagesDataType = {
-  messages: string
-  id: string
 }
 
 export const DialogsContainer = (
@@ -29,11 +17,21 @@ export const DialogsContainer = (
   const changeMessageText = (messageText: string) => dispatch(changeMessageActionCreator(messageText))
   return (
     <Dialogs
-      messageText={state.newMessage}
-      messages={state.messagesData}
-      dialogs={state.dialogsData}
+      state={state.dialogsPage}
       addMessage={addMessage}
       changeMessageText={changeMessageText}
     />
   )
 }
+const mapStateToProps = (state: RootStateType) => {
+  return {
+    dialogsPage: state.dialogsPage
+  }
+}
+const mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
+  return {
+    addMessage: (message: string) => dispatch(addMessageActionCreator(message)),
+    changeMessageText: (messageText: string) => dispatch(changeMessageActionCreator(messageText))
+  }
+}
+// export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)

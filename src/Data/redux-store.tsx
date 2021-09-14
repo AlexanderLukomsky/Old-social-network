@@ -1,12 +1,13 @@
 import { combineReducers, createStore } from "redux";
-import { dialogsPageReducer } from "./dialogsPage-reducer";
-import { propfilePageReducer } from "./profilePage-reducer";
-import { StoreType } from "./store";
+import { dialogsPageReducer } from "./oldStore/dialogsPage-reducer";
+import { propfilePageReducer } from "./oldStore/profilePage-reducer";
+import { StoreType } from "./oldStore/store";
+
 
 const reducer = combineReducers(
   {
-    profilePageData: propfilePageReducer,
-    dialogsPageData: dialogsPageReducer
+    profilePage: propfilePageReducer,
+    dialogsPage: dialogsPageReducer
   }
 );
 

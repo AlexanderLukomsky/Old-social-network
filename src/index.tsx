@@ -2,11 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { StateType } from "./Data/store";
+import { RootStateType } from "./Data/oldStore/store";
+
 import { store } from "./Data/redux-store";
 import './index.css';
 
-export const renderTree = (state: StateType) => {
+export const renderTree = (state: RootStateType) => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
