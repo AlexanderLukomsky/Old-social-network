@@ -1,26 +1,26 @@
 
-import { addPostActionCreator, changePostActionCreator } from '../../../Data/oldStore/profilePage-reducer'
-import { ActionType, ProfilePageType } from '../../../Data/oldStore/store'
+import { addPostActionCreator, changePostActionCreator } from '../../../Data/profilePage-reducer'
 import { UserPost } from './UserPosts'
+import { StoreContext } from '../../StoreContext'
 
-type PropsType = {
-  state: ProfilePageType
-  dispatch: (action: ActionType) => void
-}
-export const UserPostContainer = (
-  {
-    state,
-    dispatch,
-  }: PropsType
-) => {
-  const addPost = (post: string) => dispatch(addPostActionCreator(post))
-  const changePostText = (text: string) => dispatch(changePostActionCreator(text))
+
+export const UserPostContainer = () => {
+
   return (
-    <UserPost
-      state={state}
-      postText={state.postText}
-      addPost={addPost}
-      changePostText={changePostText}
-    />
+    <StoreContext.Consumer>
+      {
+        (store) => {
+          const addPost = (post: string) => store.dispatch(addPostActionCreator(post))
+          const changePostText = (text: string) => store.dispatch(changePostActionCreator(text))
+          return <UserPost
+            posts={store.getState().profilePage.posts}
+            postText={store.getState().profilePage.postText}
+            addPost={addPost}
+            changePostText={changePostText}
+          />
+        }
+      }
+
+    </StoreContext.Consumer>
   )
 }

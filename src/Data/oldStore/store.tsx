@@ -1,6 +1,6 @@
 import { v1 } from "uuid"
-import { dialogsPageReducer } from "./dialogsPage-reducer"
-import { propfilePageReducer } from "./profilePage-reducer"
+import { DialogsPageActionType, dialogsPageReducer } from "../dialogsPage-reducer"
+import { ProfilePageActiontType, propfilePageReducer } from "../profilePage-reducer"
 //******* */
 type MessagesDataType = {
   messages: string
@@ -29,22 +29,17 @@ export type RootStateType = {
   profilePage: ProfilePageType
   dialogsPage: DialogsPageType
 }
-//******* */
-
-
-export type ActionType = {
-  type: 'ADD-POST' | 'CHANGE-POST-TEXT' | 'ADD-MESSAGE' | 'CHANGE-MESSAGES-TEXT'
-  message: string
-}
-
 export type StoreType = {
   _state: RootStateType
   getState: () => RootStateType
   _renderTree: (state: RootStateType) => void
-  subscribe: (observer: (state: RootStateType) => void) => void
-  dispatch: (action: ActionType) => void
+  subscribe: (observer: () => void) => void
+  dispatch: (action: ActionTypes) => void
 }
 
+type ActionTypes = ProfilePageActiontType | DialogsPageActionType
+
+//******* */
 export const store: StoreType = {
   _state: {
     profilePage: {
@@ -74,15 +69,19 @@ export const store: StoreType = {
     return this._state
   },
   dispatch(action) {
-    console.log(action);
-    this._state.profilePage = propfilePageReducer(this._state.profilePage, action)
-    this._state.dialogsPage = dialogsPageReducer(this._state.dialogsPage, action)
-    this._renderTree(this._state)
-
-
+    if (action.type === ('ADD-POST' || 'CHANGE-POST-TEXT')) {
+      this._state.profilePage = propfilePageReducer(this._state.profilePage, action)
+      this._renderTree(this._state)
+      return
+    }
+    if (action.type === ('ADD-MESSAGE' || 'CHANGE-MESSAGES-TEXT')) {
+      this._state.dialogsPage = dialogsPageReducer(this._state.dialogsPage, action)
+      this._renderTree(this._state)
+      return
+    }
   },
-  _renderTree(state) { },
-  subscribe(observer: (state: RootStateType) => void) { this._renderTree = observer }
+  _renderTree() { },
+  subscribe(observer: () => void) { this._renderTree = observer }
 }
 
 

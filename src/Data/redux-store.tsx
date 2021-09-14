@@ -1,8 +1,8 @@
 import { combineReducers, createStore } from "redux";
-import { dialogsPageReducer } from "./oldStore/dialogsPage-reducer";
-import { propfilePageReducer } from "./oldStore/profilePage-reducer";
+import { DialogsPageActionType, dialogsPageReducer } from "./dialogsPage-reducer";
+import { ProfilePageActiontType, propfilePageReducer } from "./profilePage-reducer";
 import { StoreType } from "./oldStore/store";
-
+export type ActionTypes = DialogsPageActionType | ProfilePageActiontType
 
 const reducer = combineReducers(
   {
