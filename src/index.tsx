@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { Provider } from "./Components/StoreContext";
+
 import { RootStateType } from "./Data/oldStore/store";
 import { store } from "./Data/redux-store";
 import './index.css';
