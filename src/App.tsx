@@ -8,6 +8,7 @@ import { Settins } from './Components/Settings/Settings';
 import { Music } from './Components/Music/Music';
 import { DialogsContainer } from './Components/Dialogs/DialogsContainer';
 import { NavbarContainer } from './Components/Navbar/NavbarContainer';
+import { UsersContainer } from './Components/Users/UsersContainer';
 
 
 const App: React.FC = () => {
@@ -23,6 +24,9 @@ const App: React.FC = () => {
           />
           <Route path='/messages'
             render={() => <DialogsContainer />}
+          />
+          <Route path='/users'
+            render={() => <UsersContainer />}
           />
           <Route path='/news' component={News} />
           <Route path='/music' component={Music} />

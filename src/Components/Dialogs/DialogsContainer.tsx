@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
-import { addMessageActionCreator, changeMessageActionCreator } from '../../Data/dialogsPage-reducer'
+import { addMessageActionCreator, changeMessageActionCreator, DialogsPageActionType } from '../../Data/dialogsPage-reducer'
 import { RootStateType } from '../../Data/oldStore/store'
-
 import { Dialogs } from './Dialogs'
 
 const mapStateToProps = (state: RootStateType) => {
@@ -9,7 +8,7 @@ const mapStateToProps = (state: RootStateType) => {
     state: state.dialogsPage
   }
 }
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: (action: DialogsPageActionType) => DialogsPageActionType) => {
   return {
     addMessage: (message: string) => {
       dispatch(addMessageActionCreator(message))

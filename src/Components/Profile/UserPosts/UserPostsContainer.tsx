@@ -1,14 +1,15 @@
 
-import { addPostActionCreator, changePostActionCreator } from '../../../Data/profilePage-reducer'
+import { addPostActionCreator, changePostActionCreator, ProfilePageActiontType } from '../../../Data/profilePage-reducer'
 import { UserPost } from './UserPosts'
 import { connect } from 'react-redux'
 import { RootStateType } from '../../../Data/oldStore/store'
+
 
 const mapStateToProps = (state: RootStateType) => ({
   posts: state.profilePage.posts,
   postText: state.profilePage.postText
 })
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: (action: ProfilePageActiontType) => ProfilePageActiontType) => ({
   addPost: (post: string) => { dispatch(addPostActionCreator(post)) },
   changePostText: (text: string) => dispatch(changePostActionCreator(text))
 })

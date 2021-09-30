@@ -19,7 +19,7 @@ export const propfilePageReducer = (state: ProfilePageType = initialStateProfile
       return { ...state, posts: [{ post: action.postText, likeCounter: 1, id: v1() }, ...state.posts] }
     case CHANGE_POST_TEXT:
       return { ...state, postText: action.postText }
-    default: return { ...state }
+    default: return state
   }
 }
 

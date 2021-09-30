@@ -1,13 +1,15 @@
 import { combineReducers, createStore } from "redux";
 import { DialogsPageActionType, dialogsPageReducer } from "./dialogsPage-reducer";
 import { ProfilePageActiontType, propfilePageReducer } from "./profilePage-reducer";
+import { usersReducer } from "./usersPage-reducer";
 
 export type ActionTypes = DialogsPageActionType | ProfilePageActiontType
 
 const rootReducer = combineReducers(
   {
     profilePage: propfilePageReducer,
-    dialogsPage: dialogsPageReducer
+    dialogsPage: dialogsPageReducer,
+    usersPage: usersReducer
   }
 );
 

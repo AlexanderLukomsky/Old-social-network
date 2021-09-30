@@ -19,6 +19,9 @@ export const Footer = () => {
         <li className={s.footer__item}>
           <NavLink to="/settings" className={s.footer__link} activeClassName={s.active}>Settings</NavLink>
         </li>
+        <li className={s.footer__item}>
+          <NavLink to="/users" className={s.footer__link} activeClassName={s.active}>Users</NavLink>
+        </li>
       </ul>
     </footer >
 
